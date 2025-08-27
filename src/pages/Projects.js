@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  TrendingUp, 
-  Zap, 
-  Code, 
-  Globe, 
-  ExternalLink, 
+  ExternalLink,
   ArrowRight,
   Search
 } from 'lucide-react';
@@ -15,11 +12,11 @@ const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const categories = [
-    { id: 'all', name: 'Todos', count: 10 },
-    { id: 'consulting', name: 'Consultoría', count: 3 },
-    { id: 'automation', name: 'Automatización', count: 3 },
-    { id: 'software', name: 'Software a Medida', count: 3 },
-    { id: 'digital', name: 'Transformación Digital', count: 1 }
+    { id: 'all', name: 'Todos' },
+    { id: 'consulting', name: 'Consultoría' },
+    { id: 'automation', name: 'Automatización' },
+    { id: 'software', name: 'Software a Medida' },
+    { id: 'digital', name: 'Transformación Digital' }
   ];
 
   // Capability examples (no cost/team/time claims)
@@ -57,7 +54,7 @@ const Projects = () => {
       title: "Plataforma de Analítica para Salud",
       category: "software",
       industry: "Salud",
-      image: "https://images.unsplash.com/photo-1580281657527-47e6b2b1a17c?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
       description: "Diseñamos un data mart clínico y vistas analíticas para indicadores de atención.",
       value: [
         "Paneles de calidad de atención",
@@ -136,12 +133,12 @@ const Projects = () => {
               Ejemplos de lo que podemos construir e implementar para tu organización.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn-primary">
+              <Link to="/contact" className="btn-primary">
                 Inicia tu Proyecto
-              </button>
-              <button className="btn-secondary">
+              </Link>
+              <Link to="/contact" className="btn-secondary">
                 Solicitar Propuesta
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -163,7 +160,7 @@ const Projects = () => {
                       : 'bg-secondary-100 text-secondary-700 hover:bg-secondary-200'
                   }`}
                 >
-                  {category.name} ({category.count})
+                  {category.name}
                 </button>
               ))}
             </div>
@@ -259,10 +256,10 @@ const Projects = () => {
 
                     {/* CTA */}
                     <div className="pt-4 border-t border-secondary-200">
-                      <button className="w-full btn-primary flex items-center justify-center space-x-2">
+                      <Link to="/contact" className="w-full btn-primary flex items-center justify-center space-x-2">
                         <span>Explorar esta solución</span>
                         <ExternalLink className="w-4 h-4" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
@@ -287,13 +284,13 @@ const Projects = () => {
               Hablemos sobre tus objetivos y te proponemos la mejor ruta para implementarlo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn-primary">
+              <Link to="/contact" className="btn-primary flex items-center justify-center">
                 Inicia tu Proyecto
                 <ArrowRight className="w-5 h-5 ml-2" />
-              </button>
-              <button className="btn-secondary bg-white text-secondary-900 hover:bg-secondary-100">
+              </Link>
+              <Link to="/contact" className="btn-secondary bg-white text-secondary-900 hover:bg-secondary-100">
                 Agendar Consulta
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>

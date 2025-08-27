@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Mail, 
-  Phone, 
   MapPin, 
-  Clock, 
-  Send, 
   CheckCircle,
-  MessageSquare,
-  Calendar,
-  Instagram
+  Instagram,
+  MessageCircle
 } from 'lucide-react';
+import config from '../config';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -39,15 +36,30 @@ const Contact = () => {
     setError('');
 
     try {
-      const res = await fetch('/api/contact', {
+      // Debug logging
+      console.log('🚀 Form submission started');
+      console.log('📝 Form data:', formData);
+      console.log('🔗 API URL:', `${config.apiUrl}${config.contactEndpoint}`);
+      console.log('⚙️ Config:', config);
+      
+      // Use relative URL for development (will work with proxy)
+      // For production, this will be the same domain
+      const res = await fetch(`${config.apiUrl}${config.contactEndpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
+      
+      console.log('📡 Response status:', res.status);
+      console.log('📡 Response headers:', res.headers);
+      
       const data = await res.json();
+      console.log('📄 Response data:', data);
+      
       if (!res.ok || !data.ok) throw new Error(data.error || 'Error');
       setIsSubmitted(true);
     } catch (err) {
+      console.error('❌ Contact form error:', err);
       setError('No se pudo enviar el mensaje. Intenta nuevamente.');
     } finally {
       setIsSubmitting(false);
@@ -63,23 +75,15 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      details: ["LevelUpConsulting@gmail.com"],
+      details: [config.email],
       action: null
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Dirección",
-      details: ["Calle Hortensia 9, Getafe, 28903"],
+      details: [config.address],
       action: null
     }
-  ];
-
-  const services = [
-    "Consultoría de Negocios",
-    "Automatización de Procesos",
-    "Software a Medida",
-    "Transformación Digital",
-    "Otro"
   ];
 
   return (
@@ -252,7 +256,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5" />
+                        <MessageCircle className="w-5 h-5" />
                         <span>Enviar Mensaje</span>
                       </>
                     )}
@@ -305,9 +309,13 @@ const Contact = () => {
                   Acciones Rápidas
                 </h3>
                 <div className="space-y-3">
-                  <a href="https://instagram.com/LevelUpConsulting" target="_blank" rel="noreferrer" className="w-full flex items-center justify-center space-x-2 bg-secondary-100 hover:bg-secondary-200 text-secondary-700 font-medium py-3 px-4 rounded-lg transition-colors">
+                  <a href={config.instagram} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center space-x-2 bg-secondary-100 hover:bg-secondary-200 text-secondary-700 font-medium py-3 px-4 rounded-lg transition-colors">
                     <Instagram className="w-5 h-5" />
-                    <span>Escríbenos en Instagram @LevelUpConsulting</span>
+                    <span>Escríbenos en Instagram @leveluptechconsulting</span>
+                  </a>
+                  <a href={config.whatsapp} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center space-x-2 bg-secondary-100 hover:bg-secondary-200 text-secondary-700 font-medium py-3 px-4 rounded-lg transition-colors">
+                    <MessageCircle className="w-5 h-5" />
+                    <span>Escríbenos por WhatsApp</span>
                   </a>
                 </div>
               </div>

@@ -4,8 +4,8 @@
 
 PORT=5000
 MAIL_USER=yourgmail@gmail.com
-MAIL_PASS=your_app_password
-MAIL_TO=LevelUpConsulting@gmail.com
+MAIL_PASS=your-app-password
+MAIL_TO=levelupconsultinges@gmail.com
 
 - Use a Gmail account and generate an App Password (Google Account → Security → App passwords) for MAIL_PASS.
 - MAIL_TO is where messages will be delivered.

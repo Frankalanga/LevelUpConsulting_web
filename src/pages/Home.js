@@ -8,7 +8,10 @@ import {
   Shield, 
   ArrowRight,
   CheckCircle,
-  Star
+  Star,
+  Search,
+  Play,
+  FileText
 } from 'lucide-react';
 
 const Home = () => {
@@ -61,14 +64,17 @@ const Home = () => {
 
   const methodology = [
     {
+      icon: <Search className="w-8 h-8" />,
       title: "Descubrimiento y Diseño",
       description: "Entendemos tu contexto y definimos objetivos claros con una propuesta de valor medible."
     },
     {
+      icon: <Play className="w-8 h-8" />,
       title: "Ejecución Iterativa",
       description: "Entregas cortas con feedback continuo para asegurar alineación y calidad."
     },
     {
+      icon: <FileText className="w-8 h-8" />,
       title: "Validación y Soporte",
       description: "Pruebas, documentación y acompañamiento post‑entrega para garantizar resultados."
     }
@@ -110,15 +116,33 @@ const Home = () => {
               className="relative"
             >
               <div className="bg-white rounded-2xl shadow-2xl p-8">
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm text-secondary-600">Panel en Vivo</span>
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-secondary-900 mb-2">
+                      Horas Ahorradas con Automatizaciones
+                    </h3>
+                    <p className="text-secondary-600 text-sm">
+                      Nuestras soluciones han permitido a nuestros clientes ahorrar tiempo valioso
+                    </p>
                   </div>
-                  <div className="h-32 bg-gradient-to-r from-accent-500 to-primary-600 rounded-lg"></div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="h-16 bg-primary-50 rounded-lg"></div>
-                    <div className="h-16 bg-secondary-50 rounded-lg"></div>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-3 bg-primary-50 rounded-lg">
+                      <span className="text-sm text-secondary-700">Procesamiento de Datos</span>
+                      <span className="text-lg font-bold text-primary-600">1,000+ hrs</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+                      <span className="text-sm text-secondary-700">Tareas Administrativas</span>
+                      <span className="text-lg font-bold text-secondary-600">750+ hrs</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-accent-50 rounded-lg">
+                      <span className="text-sm text-secondary-700">Reportes y Análisis</span>
+                      <span className="text-lg font-bold text-accent-600">500+ hrs</span>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center pt-2">
+                    <span className="text-xs text-secondary-500">Mensuales ahorradas</span>
                   </div>
                 </div>
               </div>
@@ -134,7 +158,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-secondary-900 mb-4">
               ¿Por qué elegir LevelUp Consulting?
@@ -226,7 +250,9 @@ const Home = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="card text-center"
               >
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-r from-accent-500 to-primary-600"></div>
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-r from-accent-500 to-primary-600 text-white flex items-center justify-center">
+                  {step.icon}
+                </div>
                 <h3 className="text-xl font-semibold text-secondary-900 mb-2">{step.title}</h3>
                 <p className="text-secondary-600">{step.description}</p>
               </motion.div>
@@ -251,7 +277,7 @@ const Home = () => {
               a alcanzar tus metas y mantenerte a la vanguardia.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn-primary">
+              <Link to="/contact" className="btn-primary flex items-center justify-center">
                 Comienza tu Camino
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>

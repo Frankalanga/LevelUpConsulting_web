@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Instagram, MessageCircle } from 'lucide-react';
+import config from '../config';
 
 const Footer = () => {
   return (
@@ -18,11 +19,14 @@ const Footer = () => {
               Convertimos desafíos en oportunidades.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors" aria-label="LinkedIn">
+              <a href="https://linkedin.com/company/levelup-consulting" target="_blank" rel="noreferrer" className="text-secondary-400 hover:text-primary-400 transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors" aria-label="Instagram">
+              <a href={config.instagram} target="_blank" rel="noreferrer" className="text-secondary-400 hover:text-primary-400 transition-colors" aria-label="Instagram">
                 <Instagram className="w-5 h-5" />
+              </a>
+              <a href={config.whatsapp} target="_blank" rel="noreferrer" className="text-secondary-400 hover:text-primary-400 transition-colors" aria-label="WhatsApp">
+                <MessageCircle className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -87,15 +91,15 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center space-x-3">
               <Mail className="w-5 h-5 text-primary-400" />
-              <span className="text-secondary-300">LevelUpConsulting@gmail.com</span>
+              <span className="text-secondary-300">{config.email}</span>
             </div>
             <div className="flex items-center space-x-3">
               <Phone className="w-5 h-5 text-primary-400" />
-              <span className="text-secondary-300">+1 (555) 123-4567</span>
+              <span className="text-secondary-300">{config.phone}</span>
             </div>
             <div className="flex items-center space-x-3">
               <MapPin className="w-5 h-5 text-primary-400" />
-              <span className="text-secondary-300">Calle Hortensia 9, Getafe, 28903</span>
+              <span className="text-secondary-300">{config.address}</span>
             </div>
           </div>
         </div>
