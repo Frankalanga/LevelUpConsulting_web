@@ -1,8 +1,6 @@
 node_modules
 npm-debug.log
 .git
-.gitignore
-README.md
 .env
 .env.local
 .env.development.local
@@ -16,8 +14,4 @@ build
 coverage
 .nyc_output
 .cache
-.parcel-cache
-test-env.js
-build-production.sh
-build-production.bat
-DEPLOYMENT-CHECKLIST.md 
+.parcel-cache 
