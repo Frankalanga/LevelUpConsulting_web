@@ -5,7 +5,8 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.SERVER_PORT || 5000;
+// Railway sets PORT environment variable, fallback to SERVER_PORT or 5001
+const PORT = process.env.PORT || process.env.SERVER_PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
@@ -17,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Health check
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true });
+  res.json({ ok: true, timestamp: new Date().toISOString() });
 });
 
 // Contact endpoint
@@ -75,9 +76,23 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server listening on port ${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📧 Mail User: ${process.env.MAIL_USER || 'not set'}`);
+  console.log(`🔑 Mail Pass: ${process.env.MAIL_PASS ? '***set***' : 'not set'}`);
+  console.log(`📬 Mail To: ${process.env.MAIL_TO || 'not set'}`);
+});
+
+// Handle graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, shutting down gracefully');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT received, shutting down gracefully');
+  process.exit(0);
 });
 
 

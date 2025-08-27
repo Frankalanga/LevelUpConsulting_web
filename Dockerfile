@@ -32,8 +32,8 @@ RUN npm prune --production
 # Switch back to node user for running the app
 USER node
 
-# Expose port
+# Expose port (Railway will override this)
 EXPOSE 5001
 
-# Start the server
+# Start the server (Railway will set PORT environment variable)
 CMD ["npm", "run", "server"] 

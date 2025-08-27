@@ -5,4 +5,8 @@ builder = "dockerfile"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10 
+restartPolicyMaxRetries = 10
+
+# Railway specific settings
+[deploy.startCommand]
+command = "npm run server" 
